@@ -13,5 +13,6 @@ void GPIO_initialize() {
 }
 
 void GPIO_blinkLed() {
-	PORTB = (1<<PORTB0); //aciona o pino PB0
+	PORTB |= (1<<PORTB0); //aciona o pino PB0
+	PORTB &= ~(1<<PORTB0); //desaciona o pino PB0
 }
