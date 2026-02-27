@@ -10,6 +10,7 @@
 #include "usart.h"
 
 int main(void) {
+    //Inicialização dos periféricos
 	GPIO_initialize();
 	USART_initialize();
     while(1) {
