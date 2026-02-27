@@ -2,13 +2,13 @@
  * usart.c
  *
  * Created: 27/02/2026 14:00:14
- *  Author: Aluno
+ *  Author: Adan Kvitschal
  */ 
 
 #include "usart.h"
 
 void USART_initialize() {
-	//configurar o módulo USART
+	//configurar o mï¿½dulo USART
 }
 
 void USART_send() {

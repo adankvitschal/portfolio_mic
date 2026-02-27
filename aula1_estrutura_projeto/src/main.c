@@ -2,7 +2,7 @@
  * main.c
  *
  * Created: 2/27/2026 1:45:23 PM
- *  Author: Aluno
+ *  Author: Adan Kvitschal
  */ 
 
 #include <xc.h>
