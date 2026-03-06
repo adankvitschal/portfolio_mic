@@ -13,8 +13,8 @@
  *    ligada ao pino PD3 estiver pressionada.
  */
 
-int main(void) {
-	DDRC |= (1<<DDC2); // Configurar o pino PC2 como sa�da
+ void atividade1() {
+	DDRC |= (1<<DDC2); // Configurar o pino PC2 como saída
 	DDRD &= (1<<DDD3); // Configura pino PD3 como entrada
     while(1) {
         if((PIND & (1<<PIND3)) != 0) { //Ler o valor da chave (PD3)
@@ -28,4 +28,8 @@ int main(void) {
 			PORTC &= ~(1<<PORTC2); //apaga led
 		}
     }
+ }
+
+int main(void) {
+	atividade1();	
 }
