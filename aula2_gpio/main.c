@@ -13,7 +13,7 @@
  *    ligada ao pino PD3 estiver pressionada.
  */
 
- void atividade1() {
+void atividade1() {
 	DDRC |= (1<<DDC2); // Configurar o pino PC2 como saída
 	DDRD &= (1<<DDD3); // Configura pino PD3 como entrada
     while(1) {
@@ -27,9 +27,35 @@
 			//Chave aberta
 			PORTC &= ~(1<<PORTC2); //apaga led
 		}
-    }
- }
+	}
+}
+
+/**
+ * @brief Controla 6 leds (PB0 a PB5) em uma lógica de "pinheirinho de natal"
+ *    enquanto a chave (PD3) está acionada
+ */
+
+void atividade2() {
+	DDRD &= (1<<DDD3); // Configura pino PD3 como entrada
+	//Configurar pinos PB0-PB5 como saída
+	DDRB |= (1<<DDB5)|(1<<DDB4)|(1<<DDB3)|(1<<DDB2)|(1<<DDB1)|(1<<DDB0);
+	uint8_t tState = 1; //Guarda estado de acionamento dos LEDs
+	while(1) {
+		tState = tState << 1;
+		if(tState == 0b01000000) {
+			tState = 1;
+		}
+        if((PIND & (1<<PIND3)) != 0) { //Ler o valor da chave (PD3)
+			//Chave fechada
+			PORTB = tState;
+		} else {
+			//Chave aberta
+			PORTB = 0;
+		}
+		_delay_ms(200);
+	}
+}
 
 int main(void) {
-	atividade1();	
+	atividade2();	
 }
