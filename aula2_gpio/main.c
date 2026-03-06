@@ -8,13 +8,13 @@
 #include <xc.h>
 #include "util/delay.h"
 
-/* O que este código faz:
- *    Pisca um led ligado ao pino PC2 enquanto a chave
+/**
+ *	@brief Pisca um led ligado ao pino PC2 enquanto a chave
  *    ligada ao pino PD3 estiver pressionada.
  */
 
 int main(void) {
-	DDRC |= (1<<DDC2); // Configurar o pino PC2 como saída
+	DDRC |= (1<<DDC2); // Configurar o pino PC2 como saï¿½da
 	DDRD &= (1<<DDD3); // Configura pino PD3 como entrada
     while(1) {
         if((PIND & (1<<PIND3)) != 0) { //Ler o valor da chave (PD3)
