@@ -39,12 +39,10 @@ void atividade2() {
 	DDRD &= (1<<DDD3); // Configura pino PD3 como entrada
 	//Configurar pinos PB0-PB5 como saída
 	DDRB |= (1<<DDB5)|(1<<DDB4)|(1<<DDB3)|(1<<DDB2)|(1<<DDB1)|(1<<DDB0);
-	uint8_t tState = 1; //Guarda estado de acionamento dos LEDs
+	uint8_t tState = 0b00010101; //Guarda estado de acionamento dos LEDs
 	while(1) {
 		tState = tState << 1;
-		if(tState == 0b01000000) {
-			tState = 1;
-		}
+		if(tState == 0b10101000) tState = 0b00010101;
         if((PIND & (1<<PIND3)) != 0) { //Ler o valor da chave (PD3)
 			//Chave fechada
 			PORTB = tState;
