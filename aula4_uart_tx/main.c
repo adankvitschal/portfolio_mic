@@ -10,8 +10,6 @@
 
 #include <xc.h>
 
-uint8_t gMessage[3] = {200, 100, 50};
-
 void UART_sendMessage(uint8_t * pData, int pSize) {
 	uint8_t * tMsgPtr = pData;
 	uint8_t tChecksum = 0;
@@ -36,7 +34,26 @@ int main(void) {
 		   | (0<<USBS0)					// 1 bit de stop
 		   | (1<<UCSZ01)|(1<<UCSZ00);	// frames de 8 bits
     while(1) {
-		UART_sendMessage(gMessage, 3);
-		_delay_ms(10);
+		if((PINB & (1<<PINB0)) == 0) {
+			uint8_t tMessageOn[2] = {0x20, 0x01};
+			UART_sendMessage(tMessageOn, 2);
+			_delay_ms(10);
+		} else		
+		if((PINB & (1<<PINB1)) == 0) {
+			uint8_t tMessageOff[2] = {0x20, 0x00};
+			UART_sendMessage(tMessageOff, 2);
+			_delay_ms(10);
+		}
+		
+		if((PINB & (1<<PINB2)) == 0) {
+			uint8_t tMessageOn[2] = {0x30, 0x01};
+			UART_sendMessage(tMessageOn, 2);
+			_delay_ms(10);
+		} else
+		if((PINB & (1<<PINB3)) == 0) {
+			uint8_t tMessageOff[2] = {0x30, 0x00};
+			UART_sendMessage(tMessageOff, 2);
+			_delay_ms(10);
+		}
     }
 }
