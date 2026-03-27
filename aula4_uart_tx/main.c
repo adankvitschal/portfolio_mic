@@ -26,6 +26,7 @@ void UART_sendMessage(uint8_t * pData, int pSize) {
 	UDR0 = tChecksum;
 }
 
+// Função principal UART TX
 int main(void) {
 	UBRR0 = 103; //Configurar BAUD Rate para 9600
 	UCSR0A = (0<<U2X0);
